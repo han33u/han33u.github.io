@@ -40,9 +40,9 @@
 
 ## Current State
 
-- Current state: trail running portfolio now uses a Swiss UTMB-inspired alpine hero image and cooler mountain palette across the full page, verified on the live public site; change-request workflow remains fully applied
-- Completed loops: `AORR.md`, `Self-Correcting TDD Loop`, `MEMORY.md`, first site scaffold, Claude Sonnet verification, content scaffold expansion, Games scaffold expansion, snake game implementation, GitHub Pages deployment, snake pacing adjustment, content prompt separation, detailed prompt expansion, site copy application, trail running redesign, change-request workflow setup, change-request workflow applied, design refresh with richer colors and depth, Swiss UTMB background image and alpine design refresh, full-page Swiss UTMB layout refinement
-- Next loop: game polish, accessibility checks, or any confirmed content updates
+- Current state: trail running portfolio now uses a Swiss UTMB-inspired alpine hero image and cooler mountain palette across the full page; the Games section now includes both the snake game and a newly added mountain-climbing game, with local browser verification completed and GitHub Pages redeployment pending
+- Completed loops: `AORR.md`, `Self-Correcting TDD Loop`, `MEMORY.md`, first site scaffold, Claude Sonnet verification, content scaffold expansion, Games scaffold expansion, snake game implementation, GitHub Pages deployment, snake pacing adjustment, content prompt separation, detailed prompt expansion, site copy application, trail running redesign, change-request workflow setup, change-request workflow applied, design refresh with richer colors and depth, Swiss UTMB background image and alpine design refresh, full-page Swiss UTMB layout refinement, mountain climbing game addition
+- Next loop: GitHub Pages deployment for the new mountain game, then any confirmed game polish, accessibility checks, or content updates
 - Current Retry count: 0
 - Current error fingerprint: none
 - Blocker: none
@@ -306,4 +306,21 @@
 - Retry count: 0
 - End state: full-page Swiss UTMB-inspired design is live and verified
 - Next task: any confirmed content or game updates
+- Human check needed: none
+
+### Loop 10
+
+- Start time: 2026-07-14
+- Goal: Add a second mini game, a mountain-climbing game, inside the existing Games section
+- Start state: the Swiss UTMB-inspired portfolio and snake game were already in place
+- Hypothesis: A second canvas game can be added safely if it has its own focus handling, controls, and status UI
+- Act: Updated `index.html` to add a mountain-climbing game card, updated `styles.css` to lay out both game cards cleanly, and rewrote `script.js` to initialize a separate mountain game with keyboard and touch controls; validated locally in Chrome at desktop and mobile sizes
+- Changed files: `index.html`, `styles.css`, `script.js`
+- Verifier: local HTTP server, Chrome desktop browser, Chrome mobile viewport
+- Test result: PASS
+- exit code: 0
+- Error fingerprint: none
+- Retry count: 0
+- End state: mountain-climbing game is implemented locally and ready for GitHub Pages redeployment
+- Next task: deploy the updated root files to GitHub Pages and confirm the public site
 - Human check needed: none
