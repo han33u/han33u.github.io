@@ -40,14 +40,14 @@
 
 ## Current State
 
-- Current state: trail running portfolio now uses a Swiss UTMB-inspired alpine hero image and cooler mountain palette across the full page; the Games section now includes both the snake game and a newly added mountain-climbing game, with local browser verification completed and GitHub Pages redeployment pending
-- Completed loops: `AORR.md`, `Self-Correcting TDD Loop`, `MEMORY.md`, first site scaffold, Claude Sonnet verification, content scaffold expansion, Games scaffold expansion, snake game implementation, GitHub Pages deployment, snake pacing adjustment, content prompt separation, detailed prompt expansion, site copy application, trail running redesign, change-request workflow setup, change-request workflow applied, design refresh with richer colors and depth, Swiss UTMB background image and alpine design refresh, full-page Swiss UTMB layout refinement, mountain climbing game addition
-- Next loop: GitHub Pages deployment for the new mountain game, then any confirmed game polish, accessibility checks, or content updates
+- Current state: trail running portfolio now uses a Swiss UTMB-inspired alpine hero image and cooler mountain palette across the full page; the Games section now includes both the snake game and the newly added mountain-climbing game, and the updated site is deployed and verified on GitHub Pages
+- Completed loops: `AORR.md`, `Self-Correcting TDD Loop`, `MEMORY.md`, first site scaffold, Claude Sonnet verification, content scaffold expansion, Games scaffold expansion, snake game implementation, GitHub Pages deployment, snake pacing adjustment, content prompt separation, detailed prompt expansion, site copy application, trail running redesign, change-request workflow setup, change-request workflow applied, design refresh with richer colors and depth, Swiss UTMB background image and alpine design refresh, full-page Swiss UTMB layout refinement, mountain climbing game addition, mountain game deployment
+- Next loop: any confirmed game polish, accessibility checks, or content updates
 - Current Retry count: 0
 - Current error fingerprint: none
 - Blocker: none
 - Last normal state: GitHub Pages deployment with snake game verified
-- Current stable deployment commit: `f12ec97bf135ccf5edaac443c3fe4a4e9b6046ad`
+- Current stable deployment commit: `ab0b6a76f2e5aba34f0c7a688e5cdf42edc303a1`
 - Rollback reference: redeploy the previous stable root files from the GitHub Contents history if a future change breaks the site; do not hard reset or force push
 - Current change-request doc: `CHANGE_REQUEST.md`
 - Current workflow focus: split incoming requests into `Change Item` units before editing
@@ -322,5 +322,6 @@
 - Error fingerprint: none
 - Retry count: 0
 - End state: mountain-climbing game is implemented locally and ready for GitHub Pages redeployment
-- Next task: deploy the updated root files to GitHub Pages and confirm the public site
+- End state: mountain-climbing game is implemented, deployed, and verified on GitHub Pages
+- Next task: any confirmed polish or content updates
 - Human check needed: none
