@@ -1,8 +1,8 @@
-# Detailed Content Prompt for the Portfolio Site
+# 포트폴리오 사이트용 상세 콘텐츠 프롬프트
 
-Use this prompt whenever you need to write or revise the visible copy for the GitHub Pages portfolio site.
+GitHub Pages에 올릴 개인 포트폴리오 사이트의 화면에 보이는 문구를 작성하거나 수정할 때 이 프롬프트를 사용하세요.
 
-The site is a static professional website with these sections:
+이 사이트는 다음 섹션으로 구성된 정적 개인 포트폴리오입니다.
 
 - Hero
 - About / Profile
@@ -12,64 +12,62 @@ The site is a static professional website with these sections:
 - Contact
 - Games
 
-The copy must fit a clean, responsive layout and must not assume any unverified personal data.
+문구는 반응형 레이아웃에 잘 맞아야 하며, 확인되지 않은 개인 정보를 임의로 넣으면 안 됩니다.
 
-## 1. Core writing rules
+## 1. 기본 작성 원칙
 
-Write in Korean unless the surrounding UI already uses an English label.
+한국어로 작성하되, 화면에 이미 영어 라벨이 있는 경우에는 그 라벨과 자연스럽게 어울리게 쓰세요.
 
-Keep the tone:
+톤은 다음과 같아야 합니다.
 
-- professional
-- calm
-- concise
-- friendly
-- credible
+- 전문적이어야 함
+- 차분해야 함
+- 간결해야 함
+- 친근해야 함
+- 신뢰감 있어야 함
 
-Avoid:
+피해야 할 표현:
 
-- exaggerated marketing language
-- vague filler phrases
-- fake accomplishments
-- invented job titles
-- invented employers
-- invented project names
-- invented contact details
-- overly long paragraphs
+- 과장된 홍보 문구
+- 의미 없는 장황한 문장
+- 사실이 아닌 성과
+- 허위 경력
+- 존재하지 않는 프로젝트
+- 확인되지 않은 연락처
+- 모바일에서 지나치게 길게 보이는 문장
 
-If a fact is not confirmed, do not invent it.
-Use `[사람 확인 필요]` for anything that still needs user confirmation.
+확인되지 않은 정보는 절대 추측하지 말고, 반드시 `[사람 확인 필요]`로 표시하세요.
 
-If a section has no confirmed content yet, keep the section present but make the wording explicit that the content is pending verification.
+아직 채워지지 않은 섹션이 있더라도 섹션 자체는 유지하고, 내용이 확인 대기 상태라는 점을 분명하게 써 두세요.
 
-The website should feel like a real portfolio, not a template dump.
-Every section should sound intentional and edited.
+이 사이트는 템플릿처럼 보이면 안 되고, 실제 포트폴리오처럼 보여야 합니다.
+각 섹션의 문장은 짧더라도 의도와 정리가 느껴져야 합니다.
 
-## 2. Content strategy
+## 2. 콘텐츠 전략
 
-The page should communicate four things quickly:
+페이지를 처음 봤을 때 빠르게 전달해야 하는 핵심은 네 가지입니다.
 
-1. who the site belongs to
-2. what kind of work the person does
-3. what projects or skills matter
-4. how to reach them, if that information is confirmed
+1. 이 사이트의 주인이 누구인지
+2. 어떤 성격의 작업을 하는지
+3. 어떤 프로젝트나 기술이 중요한지
+4. 확인된 경우 어떻게 연락할 수 있는지
 
-The Games section should communicate that the site includes a small interactive snake game.
+Games 섹션은 작은 지렁이 게임이 들어 있는 영역이라는 점을 전달해야 합니다.
 
-The tone should be confident but not overstated.
+전체 톤은 자신감은 있지만 과장되지 않아야 합니다.
 
-The copy should make it clear that the site is:
+문구는 다음 사실을 자연스럽게 드러내야 합니다.
 
-- static
-- GitHub Pages friendly
-- responsive on desktop and mobile
-- built with HTML, CSS, and JavaScript only
+- 정적 사이트
+- GitHub Pages 친화적 구조
+- 데스크톱과 모바일 모두 대응하는 반응형 레이아웃
+- HTML, CSS, JavaScript만으로 동작하는 구성
 
-## 3. What to keep stable
+## 3. 유지해야 할 것
 
-Preserve the existing layout and section order unless the user explicitly asks to restructure the page.
+사용자가 별도로 구조 변경을 요청하지 않는 한, 현재 섹션 순서와 레이아웃은 유지하세요.
 
-Keep the top navigation labels short:
+상단 내비게이션은 짧고 명확하게 유지합니다.
 
 - Home
 - About
@@ -79,287 +77,290 @@ Keep the top navigation labels short:
 - Contact
 - Games
 
-Do not add new sections unless they are explicitly requested or clearly needed.
+새 섹션을 함부로 추가하지 마세요.
+명시적으로 필요하다고 확인된 경우에만 추가하세요.
 
-## 4. Master prompt for generating the visible copy
+## 4. 실제 문구 생성을 위한 마스터 프롬프트
 
-If you are using an LLM to generate the site copy, use this as the main instruction:
+LLM에게 사이트 문구를 생성시키는 경우에는 아래 지시문을 기본으로 사용하세요.
 
-> Write polished, short, professional Korean copy for a static personal portfolio website hosted on GitHub Pages. The page should introduce the owner, summarize work or skills, show a few selected projects, explain experience in a credible way, leave unverified information as `[사람 확인 필요]`, and clearly present a Games section with a snake game. Keep everything concise enough for a responsive one-page layout. Do not invent personal facts. Use a calm, competent tone. Make the site feel real and trustworthy.
+> GitHub Pages에서 동작하는 정적 개인 포트폴리오 사이트용 한국어 문구를 세련되고 간결하게 작성하세요. 이 페이지는 개인 소개, 프로젝트, 경험, 그리고 작은 게임 섹션을 함께 담고 있습니다. 아직 확인되지 않은 개인 정보는 절대 추측하지 말고 `[사람 확인 필요]`로 남겨 두세요. 반응형 한 페이지 레이아웃에 맞게 짧고 읽기 쉬운 문장으로 작성하세요. 과장하지 말고, 신뢰감 있고 차분한 톤을 유지하세요.
 
-## 5. Section-by-section prompt
+## 5. 섹션별 상세 프롬프트
 
 ### Hero
 
-Goal:
+목표:
 
-- explain the site in one glance
-- establish a professional but approachable tone
-- make it clear that the site is a static portfolio with a small game feature
+- 사이트의 성격을 한눈에 보여주기
+- 전문적이면서도 친근한 첫인상 만들기
+- 작은 게임이 포함된 포트폴리오라는 점 전달하기
 
-Write:
+작성 요소:
 
-- one short eyebrow/label
-- one strong headline
-- one short supporting sentence
-- optionally one compact summary card for the technologies used
+- 짧은 레이블
+- 강한 제목 1개
+- 짧은 보조 문장 1개
+- 필요하면 기술 요약 카드
 
-Hero headline guidance:
+Hero 제목은 다음 조건을 만족해야 합니다.
 
-- the headline should sound like a real portfolio title
-- it should mention both the portfolio and the game element
-- keep it readable on mobile
-- avoid a headline that is too long to scan quickly
+- 실제 포트폴리오 제목처럼 보여야 함
+- 포트폴리오와 게임 요소가 함께 느껴져야 함
+- 모바일에서 읽기 쉬워야 함
+- 너무 길어 한 번에 안 읽히면 안 됨
 
-Example direction:
+예시 방향:
 
 - “정적 웹사이트와 작은 게임을 함께 담은 개인 포트폴리오”
 - “GitHub Pages에서 동작하는 프로페셔널 웹사이트”
 - “소개, 프로젝트, 게임을 한 곳에 담은 포트폴리오”
 
-Supporting sentence guidance:
+보조 문장은 다음을 전달하면 좋습니다.
 
-- explain that the first goal is a stable GitHub Pages site
-- mention responsive layout
-- mention that the site will expand over time
+- GitHub Pages에서 안정적으로 열리는 구조
+- 반응형 레이아웃
+- 앞으로 점진적으로 확장될 수 있는 구성
 
-Sample supporting sentence styles:
+예시 문장:
 
-- “이 사이트는 GitHub Pages에서 안정적으로 열리는 정적 포트폴리오를 목표로 한다.”
-- “반응형 레이아웃과 작은 게임을 함께 담아, 한 페이지에서 빠르게 탐색할 수 있도록 구성한다.”
-- “확인된 정보만 반영하면서, 필요한 콘텐츠를 루프 단위로 차근차근 채워 간다.”
+- “이 사이트는 GitHub Pages에서 안정적으로 열리는 정적 포트폴리오를 목표로 합니다.”
+- “반응형 레이아웃과 작은 게임을 함께 담아 한 페이지에서 빠르게 탐색할 수 있도록 구성합니다.”
+- “확인된 정보만 반영하면서 필요한 콘텐츠를 루프 단위로 차근차근 채워 갑니다.”
 
 ### About / Profile
 
-Goal:
+목표:
 
-- briefly explain who the person is
-- summarize the general profile without inventing details
-- leave unknowns clearly marked
+- 이 사이트의 주인이 누구인지 간단히 설명
+- 확인되지 않은 정보는 넣지 않기
+- 짧고 신뢰감 있게 소개하기
 
-Write:
+작성 요소:
 
-- a section title
-- one to three short sentences
+- 섹션 제목
+- 2~3개의 짧은 문장
 
-If the person’s name, role, or background is not confirmed, do not pretend it is.
+이름, 역할, 배경이 확인되지 않았다면 추측하지 마세요.
 
-Suggested structure:
+권장 구조:
 
-- sentence 1: what kind of portfolio this is
-- sentence 2: what the person focuses on
-- sentence 3: a note that unverified information remains pending
+- 1문장: 이 사이트가 어떤 성격의 포트폴리오인지
+- 2문장: 어떤 작업에 초점을 맞추는지
+- 3문장: 아직 확인되지 않은 항목은 어떻게 처리하는지
 
-Sample directions:
+예시 방향:
 
-- “이 섹션은 [사람 확인 필요]의 프로필을 위한 공간이다.”
-- “확인된 소개와 경력만 반영하고, 불확실한 항목은 [사람 확인 필요]로 둔다.”
-- “정적 웹사이트, 반응형 UI, 브라우저 기반 인터랙션 중심의 작업을 다룬다.”
+- “이 섹션은 [사람 확인 필요]의 프로필을 위한 공간입니다.”
+- “확인된 소개와 경력만 반영하고, 불확실한 항목은 [사람 확인 필요]로 남겨 둡니다.”
+- “정적 웹사이트, 반응형 UI, 브라우저 기반 인터랙션 중심의 작업을 다룹니다.”
 
-Do not:
+금지 사항:
 
-- guess the person’s occupation
-- add university names or employers without confirmation
-- describe seniority, awards, or years of experience unless confirmed
+- 직업을 임의로 추측하기
+- 학교 이름이나 회사 이름을 확인 없이 넣기
+- 연차, 수상, 경력치를 확인 없이 적기
 
 ### Selected Projects
 
-Goal:
+목표:
 
-- show 2 to 3 projects or project themes
-- describe them in a way that feels specific and useful
-- avoid fake project histories
+- 2~3개의 프로젝트 또는 프로젝트 테마 보여주기
+- 너무 추상적이지 않게 쓰기
+- 사실이 아닌 프로젝트 이력은 넣지 않기
 
-For each card, write:
+각 카드에는 다음이 필요합니다.
 
-- project name
-- one-line summary
-- one short note about why it matters
+- 프로젝트 이름
+- 한 줄 요약
+- 왜 중요한지에 대한 짧은 설명
 
-If real projects are not confirmed, use neutral working titles such as:
+실제 프로젝트가 아직 확인되지 않았다면 다음처럼 중립적인 작업 제목을 사용하세요.
 
 - Portfolio Foundation
 - Games Area
 - Responsive Layout System
 
-Project copy guidance:
+프로젝트 문구 지침:
 
-- keep each card short
-- describe the outcome or purpose, not just the tool stack
-- if a project is only a placeholder, say so directly
+- 카드당 문장은 짧게
+- 도구 나열보다 결과와 목적을 설명
+- 임시 자리 표시자라면 그 사실을 분명히 하기
 
-Example card directions:
+예시 방향:
 
 - “GitHub Pages용 반응형 정적 사이트의 기본 구조.”
-- “게임 섹션과 콘텐츠 섹션을 함께 담은 one-page 레이아웃.”
+- “게임 섹션과 콘텐츠 섹션을 함께 담은 원페이지 레이아웃.”
 - “브라우저 기반 상호작용을 위한 최소한의 JavaScript 연결.”
 
 ### Experience
 
-Goal:
+목표:
 
-- summarize development experience in a professional way
-- sound credible even if the details are still partial
-- focus on the kind of work, not a fabricated job history
+- 개발 경험을 전문적이고 믿을 수 있게 요약
+- 확인되지 않은 직장 이력은 만들지 않기
+- 실제 작업 성격에 초점 맞추기
 
-Use this section to talk about:
+이 섹션에서는 다음을 다루면 좋습니다.
 
-- frontend development
-- responsive layout work
-- static site delivery
-- loop-based or test-driven workflow
-- browser-based interaction
+- 프론트엔드 개발
+- 반응형 레이아웃 작업
+- 정적 사이트 배포
+- 루프 기반 또는 테스트 중심 작업 방식
+- 브라우저 기반 인터랙션
 
-If experience is not confirmed, keep it general:
+경력이 아직 확정되지 않았다면 일반화해서 쓰세요.
 
-- “정적 웹사이트, 반응형 레이아웃, 브라우저 기반 UI를 다룬다.”
-- “작은 검증 루프로 위험을 줄이고, 통과한 기능은 그대로 보존한다.”
-- “실행 가능한 최소 단위로 나누어 구현하고 검증하는 방식을 선호한다.”
+예시:
 
-Do not:
+- “정적 웹사이트, 반응형 레이아웃, 브라우저 기반 UI를 다룹니다.”
+- “작은 검증 루프로 위험을 줄이고, 통과한 기능은 그대로 보존합니다.”
+- “실행 가능한 최소 단위로 나누어 구현하고 검증하는 방식을 선호합니다.”
 
-- invent company names
-- invent roles like “senior engineer” or “lead designer”
-- invent measurable achievements
+금지 사항:
+
+- 회사명 임의 생성
+- “시니어”, “리드”, “주니어” 같은 직함 임의 부여
+- 정량 성과를 확인 없이 적기
 
 ### Research
 
-Goal:
+목표:
 
-- describe learning, experimentation, or ongoing work
-- keep it honest and current
+- 학습, 실험, 진행 중인 작업을 설명
+- 현재 상태를 솔직하게 전달
 
-This section can say:
+이 섹션에는 다음과 같은 문장을 사용할 수 있습니다.
 
-- the area will be updated after verification
-- the person is iterating on responsive UI, static deployment, or browser interactions
-- the content is pending confirmation
+- 추가 요구사항이 확인되면 업데이트한다
+- 정적 배포와 UI 안정성 검증을 우선한다
+- 실험적인 내용은 검증 후 차례대로 반영한다
 
-Example directions:
+예시 방향:
 
-- “이 영역은 추가 요구사항과 게임 확장 규칙이 확인되면 업데이트한다.”
-- “현재는 정적 배포와 UI 안정성에 대한 검증을 우선한다.”
-- “실험적인 내용은 검증 후 차례대로 반영한다.”
+- “이 영역은 추가 요구사항과 게임 확장 규칙이 확인되면 업데이트합니다.”
+- “현재는 정적 배포와 UI 안정성에 대한 검증을 우선합니다.”
+- “실험적인 내용은 검증 후 차례대로 반영합니다.”
 
 ### Contact
 
-Goal:
+목표:
 
-- provide only confirmed contact methods
-- avoid exposing private data that was not explicitly approved
+- 확인된 연락 방법만 보여주기
+- 개인 정보나 민감 정보를 추측하지 않기
 
-If contact details are not confirmed, say so clearly.
-If they are confirmed, keep the presentation compact:
+연락처가 확인되지 않았다면 그 사실을 분명히 적으세요.
+확인된 경우에는 간단하게 정리합니다.
 
-- email
+- 이메일
 - GitHub
-- portfolio link
-- other approved contact method
+- 포트폴리오 링크
+- 승인된 다른 연락 수단
 
-Suggested wording:
+예시 문구:
 
-- “연락처와 링크는 확인된 정보만 반영한다.”
-- “추가 연락 방법은 사람 확인 후 업데이트한다.”
-- “프로젝트 문의 방식은 검증된 경로만 표시한다.”
+- “연락처와 링크는 확인된 정보만 반영합니다.”
+- “추가 연락 방법은 사람 확인 후 업데이트합니다.”
+- “프로젝트 문의 방식은 검증된 경로만 표시합니다.”
 
-Do not:
+금지 사항:
 
-- guess email addresses
-- infer social handles
-- expose anything private or sensitive without approval
+- 이메일 주소 추측
+- 소셜 계정 임의 생성
+- 승인되지 않은 개인정보 노출
 
 ### Games
 
-Goal:
+목표:
 
-- explain that the portfolio includes a small snake game
-- mention the core controls and behavior
-- keep it short, clear, and inviting
+- 포트폴리오 안에 작은 지렁이 게임이 있다는 점 설명
+- 조작 방식과 기본 동작을 짧고 명확하게 전달
+- 읽자마자 어떤 기능인지 알 수 있게 만들기
 
-The section should communicate:
+이 섹션에는 다음 내용이 들어가야 합니다.
 
-- snake game
-- keyboard control
-- mobile touch control
-- score tracking
-- restart behavior
+- 지렁이 게임
+- 키보드 조작
+- 모바일 터치 조작
+- 점수 표시
+- 재시작 기능
 
-Possible copy directions:
+예시 방향:
 
-- “포트폴리오 안에 작은 지렁이 게임을 넣어, 키보드와 터치로 즐길 수 있게 했다.”
-- “게임은 점수, 시작, 일시정지, 재시작을 지원한다.”
-- “모바일에서도 조작이 가능하도록 화면 하단에 방향 컨트롤을 둔다.”
+- “포트폴리오 안에 작은 지렁이 게임을 넣어 키보드와 터치로 즐길 수 있게 했습니다.”
+- “게임은 점수, 시작, 일시정지, 재시작을 지원합니다.”
+- “모바일에서도 조작할 수 있도록 화면 하단에 방향 컨트롤을 둡니다.”
 
-If you mention the game rules, keep them short:
+게임 규칙을 설명할 때는 짧게 유지하세요.
 
-- move the snake
-- eat food
-- avoid walls and self-collision
-- increase score when food is eaten
+- 지렁이를 움직인다
+- 먹이를 먹는다
+- 벽이나 자기 몸에 부딪히지 않아야 한다
+- 먹이를 먹으면 점수가 올라간다
 
-## 6. Detailed copy prompts you can reuse
+## 6. 바로 재사용할 수 있는 상세 프롬프트
 
-Use these prompts when writing the actual visible text.
+실제 사이트 문구를 작성할 때는 아래 문장을 그대로 써도 됩니다.
 
-### Hero prompt
+### Hero 프롬프트
 
-“Write a concise hero section for a Korean portfolio site. The hero should say that this is a GitHub Pages-hosted static website that combines a professional profile with a small game section. Make the headline strong and readable on mobile. Keep the supporting sentence short and confident.”
+“GitHub Pages에서 동작하는 한국어 포트폴리오 사이트의 Hero 섹션을 작성하세요. 이 사이트는 정적 개인 포트폴리오이면서 작은 게임 섹션도 함께 포함합니다. 제목은 강하고 읽기 쉬워야 하며, 모바일에서도 잘 보여야 합니다. 보조 문장은 짧고 자신감 있게 작성하세요.”
 
-### About prompt
+### About 프롬프트
 
-“Write a short About/Profile section for a portfolio site. The copy should describe the owner in a professional, neutral tone without inventing personal facts. Any uncertain detail must remain `[사람 확인 필요]`. Keep it to 2–3 short sentences.”
+“포트폴리오 사이트의 About/Profile 섹션을 짧고 전문적으로 작성하세요. 확인되지 않은 개인 정보는 만들지 말고, 불확실한 내용은 `[사람 확인 필요]`로 남겨 두세요. 2~3개의 짧은 문장으로 구성하세요.”
 
-### Projects prompt
+### Projects 프롬프트
 
-“Write a Selected Projects section with 2–3 compact project cards. Each card should have a title and a one-sentence explanation. If real projects are not confirmed, use neutral placeholder project themes that still sound credible.”
+“2~3개의 카드로 구성된 Selected Projects 섹션 문구를 작성하세요. 각 카드는 제목과 한 문장 설명을 가져야 합니다. 실제 프로젝트가 확인되지 않았다면 중립적인 프로젝트 테마를 사용하되, 신뢰감 있게 보이도록 작성하세요.”
 
-### Experience prompt
+### Experience 프롬프트
 
-“Write an Experience section that summarizes frontend and static-site work in a believable way without inventing employers or titles. Focus on responsive UI, browser-based interaction, and loop-based delivery. Keep each item short.”
+“프론트엔드와 정적 사이트 작업 경험을 전문적으로 요약하는 Experience 섹션 문구를 작성하세요. 회사명이나 직함은 임의로 만들지 말고, 반응형 UI, 브라우저 기반 인터랙션, 루프 기반 전달 방식에 초점을 맞추세요. 각 항목은 짧게 유지하세요.”
 
-### Research prompt
+### Research 프롬프트
 
-“Write a Research section that shows ongoing experimentation or learning. If nothing is confirmed, say the section will be updated after verification. Keep the tone calm and honest.”
+“학습이나 실험 내용을 보여주는 Research 섹션 문구를 작성하세요. 확인된 내용이 없다면 섹션이 검증 후 업데이트될 것이라고 명시하세요. 톤은 차분하고 솔직하게 유지하세요.”
 
-### Contact prompt
+### Contact 프롬프트
 
-“Write a Contact section that only shows verified contact methods. If contact details are not confirmed, explicitly mark them as pending. Never guess or expose private information.”
+“확인된 연락 수단만 보여주는 Contact 섹션 문구를 작성하세요. 연락처가 아직 확인되지 않았다면 명확하게 pending 상태로 표시하세요. 개인정보를 추측하거나 노출하지 마세요.”
 
-### Games prompt
+### Games 프롬프트
 
-“Write a Games section intro for a small snake game inside a portfolio site. Mention keyboard control, mobile touch control, score tracking, and restart behavior. Keep the copy short enough to scan quickly.”
+“포트폴리오 안에 들어 있는 작은 지렁이 게임을 소개하는 Games 섹션 문구를 작성하세요. 키보드 조작, 모바일 터치 조작, 점수 표시, 재시작 기능을 포함해 짧고 읽기 쉽게 작성하세요.”
 
-## 7. Editing workflow
+## 7. 편집 순서
 
-When revising the site copy, follow this order:
+사이트 문구를 수정할 때는 다음 순서로 진행하세요.
 
-1. confirm what is actually known
-2. keep unconfirmed items as `[사람 확인 필요]`
-3. write short, professional copy
-4. check that the wording fits the card layout
-5. shorten any line that wraps too aggressively on mobile
-6. keep the Games section simple and readable
+1. 실제로 확인된 정보부터 정리한다
+2. 확정되지 않은 정보는 `[사람 확인 필요]`로 남긴다
+3. 짧고 전문적인 문구를 쓴다
+4. 카드 레이아웃에 맞는지 확인한다
+5. 모바일에서 줄바꿈이 너무 많다면 문장을 줄인다
+6. Games 섹션은 단순하고 읽기 쉽게 유지한다
 
-## 8. Quality checklist
+## 8. 품질 점검 체크리스트
 
-Before finishing the content pass, verify that:
+작성을 마치기 전에 다음을 확인하세요.
 
-- the copy reads naturally in Korean
-- the layout still works on mobile
-- no section contains invented personal facts
-- placeholders are clearly marked
-- the site still feels like a real portfolio
-- the Games section is understandable at a glance
-- the copy is consistent in tone across all sections
+- 한국어로 자연스럽게 읽히는가
+- 모바일 레이아웃을 해치지 않는가
+- 개인 정보를 임의로 만들지 않았는가
+- 미확인 정보는 명확히 표시되었는가
+- 실제 포트폴리오처럼 느껴지는가
+- Games 섹션이 한눈에 이해되는가
+- 섹션별 톤이 일관적인가
 
-## 9. If more detail is still needed
+## 9. 추가 정보가 필요할 때
 
-If the user wants final polished copy later, ask for:
+나중에 더 완성된 문구가 필요하면 아래 항목을 사용자에게 요청하세요.
 
-- name
-- role or headline
-- one-line bio
-- confirmed projects
-- confirmed contact links
+- 이름
+- 역할 또는 한 줄 소개
+- 자기소개 한 문장
+- 확인된 프로젝트 목록
+- 확인된 연락 링크
 
-Do not fabricate those details in the meantime.
+그 전까지는 절대 임의로 지어내지 마세요.
