@@ -61,11 +61,11 @@ function initSnakeGame() {
   }
 
   const grid = {
-    cols: 20,
-    rows: 15,
-    cell: 32,
-    width: 640,
-    height: 480,
+    cols: 24,
+    rows: 18,
+    cell: 28,
+    width: 672,
+    height: 504,
   };
 
   canvas.width = grid.width;
@@ -108,9 +108,9 @@ function initSnakeGame() {
   function resetGame() {
     score = 0;
     snake = [
-      { x: 9, y: 7 },
-      { x: 8, y: 7 },
-      { x: 7, y: 7 },
+      { x: 12, y: 9 },
+      { x: 11, y: 9 },
+      { x: 10, y: 9 },
     ];
     direction = directions.right;
     queuedDirection = directions.right;
@@ -133,7 +133,7 @@ function initSnakeGame() {
     if (timerId !== null) {
       return;
     }
-    timerId = window.setInterval(step, 140);
+    timerId = window.setInterval(step, 180);
   }
 
   function stopLoop() {
