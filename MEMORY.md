@@ -40,13 +40,15 @@
 
 ## Current State
 
-- Current state: trail running redesign applied to the live site and verified on the public URL; change-request workflow fully applied
+- Current state: trail running redesign applied to the live site and verified on the public URL; change-request workflow fully applied; latest workflow review completed with no new code change required
 - Completed loops: `AORR.md`, `Self-Correcting TDD Loop`, `MEMORY.md`, first site scaffold, Claude Sonnet verification, content scaffold expansion, Games scaffold expansion, snake game implementation, GitHub Pages deployment, snake pacing adjustment, content prompt separation, detailed prompt expansion, site copy application, trail running redesign, change-request workflow setup, change-request workflow applied
 - Next loop: game polish, accessibility checks, or any confirmed content updates
 - Current Retry count: 0
 - Current error fingerprint: none
 - Blocker: none
 - Last normal state: GitHub Pages deployment with snake game verified
+- Current stable deployment commit: `5a27613403c45c49027a84f73904b71ad6bdec04`
+- Rollback reference: redeploy the previous stable root files from the GitHub Contents history if a future change breaks the site; do not hard reset or force push
 - Current change-request doc: `CHANGE_REQUEST.md`
 - Current workflow focus: split incoming requests into `Change Item` units before editing
 
@@ -202,6 +204,7 @@
 - The verified model for the Games scaffold expansion check was also `claude-sonnet-5`.
 - GitHub Pages deployment is live at `https://han33u.github.io/`.
 - The verified model for the snake game deployment check was `claude-sonnet-5`.
+- The current stable deployment commit is `5a27613403c45c49027a84f73904b71ad6bdec04`.
 
 ### Loop 4
 
@@ -235,4 +238,21 @@
 - Retry count: 0
 - End state: snake game remains playable long enough for keyboard and touch control
 - Next task: game polish or accessibility improvements if requested
+- Human check needed: none
+
+### Loop 6
+
+- Start time: 2026-07-14
+- Goal: Validate the latest Step 8 change-request workflow request against the current docs and live site state
+- Start state: trail running redesign is live, Pages is built, and the current workflow docs are already in place
+- Hypothesis: The request is documentation/workflow-only, so the safest action is to confirm consistency and record the current stable deployment context
+- Act: Reviewed `CHANGE_REQUEST.md`, `AORR.md`, `MEMORY.md`, the attached request text, and the current Pages deployment metadata; no code changes were needed
+- Changed files: `MEMORY.md`
+- Verifier: local document review, GitHub Pages status API, repository root contents check
+- Test result: PASS
+- exit code: 0
+- Error fingerprint: none
+- Retry count: 0
+- End state: workflow request is recorded and aligned with the current repository state
+- Next task: continue with the next confirmed content or game-related change item
 - Human check needed: none
