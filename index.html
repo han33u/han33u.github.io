@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Han33u | 프로페셔널 포트폴리오</title>
-  <meta name="description" content="Han33u의 정적 포트폴리오와 작은 게임 섹션을 함께 담은 GitHub Pages 사이트">
+  <title>Han33u | Trail Running Portfolio</title>
+  <meta name="description" content="트레일 러닝 감성과 정적 웹사이트, 작은 게임 섹션을 함께 담은 Han33u의 포트폴리오">
   <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
 </head>
@@ -13,7 +13,7 @@
 
   <header class="site-header">
     <div class="brand">
-      <p class="eyebrow">Portfolio</p>
+      <p class="eyebrow">Trail Log</p>
       <a class="brand-link" href="#home" aria-label="홈으로 이동">Han33u</a>
     </div>
 
@@ -34,60 +34,76 @@
 
   <main id="main">
     <section id="home" class="hero section">
-      <div class="hero-copy">
-        <p class="section-kicker">Professional Website</p>
-        <h1>정적 웹사이트와 작은 게임을 함께 담은 개인 포트폴리오</h1>
+      <div class="hero-copy card trail-hero">
+        <p class="section-kicker">Trail Running Portfolio</p>
+        <h1>산길의 리듬처럼 꾸준히 쌓아 가는 포트폴리오</h1>
         <p class="lead">
-          이 사이트는 GitHub Pages에서 안정적으로 열리는 정적 포트폴리오를 목표로 하며,
-          반응형 레이아웃과 작은 게임을 함께 담아 한 페이지에서 빠르게 탐색할 수 있도록 구성합니다.
+          트레일 러닝의 루틴과 기록 감성을 바탕으로,
+          정적 웹사이트와 작은 게임을 함께 담은 개인 공간입니다.
         </p>
+
+        <div class="trail-meta" aria-label="트레일 요약">
+          <span class="trail-chip">Trail</span>
+          <span class="trail-chip">Run</span>
+          <span class="trail-chip">Build</span>
+        </div>
       </div>
-      <aside class="hero-card" aria-label="사이트 요약">
-        <p>Static HTML</p>
-        <p>Responsive CSS</p>
-        <p>Vanilla JavaScript</p>
+
+      <aside class="hero-card trail-card" aria-label="트레일 요약">
+        <div class="trail-stats">
+          <p class="trail-stat-label">루틴</p>
+          <p class="trail-stat-value">꾸준한 기록과 반복 개선</p>
+        </div>
+        <div class="trail-stats">
+          <p class="trail-stat-label">코스</p>
+          <p class="trail-stat-value">정적 사이트 · 반응형 UI · 게임 섹션</p>
+        </div>
+        <div class="trail-stats">
+          <p class="trail-stat-label">페이스</p>
+          <p class="trail-stat-value">작고 빠른 루프로 안정적으로 완성</p>
+        </div>
       </aside>
     </section>
 
     <section id="about" class="section card">
       <p class="section-kicker">About</p>
-      <h2>About / Profile</h2>
+      <h2>산길과 기록을 좋아하는 사람의 프로필</h2>
       <p>
-        이 섹션은 [사람 확인 필요]의 프로필을 위한 공간입니다.
+        이 사이트는 트레일 러닝을 즐기며, 꾸준한 루틴과 기록을 중요하게 생각하는 사용자의 개인 포트폴리오입니다.
       </p>
       <p>
-        확인된 소개와 경력만 반영하고, 불확실한 항목은 [사람 확인 필요]로 남겨 둡니다.
+        확인된 정보만 반영하고, 아직 확정되지 않은 항목은 [사람 확인 필요]로 남겨 둡니다.
       </p>
       <p>
-        정적 웹사이트, 반응형 UI, 브라우저 기반 인터랙션 중심의 작업을 다룹니다.
+        정적 웹사이트, 반응형 UI, 브라우저 기반 인터랙션처럼 가볍고 반복 가능한 작업에 초점을 둡니다.
       </p>
     </section>
 
     <section id="projects" class="section card">
       <p class="section-kicker">Projects</p>
-      <h2>Selected Projects</h2>
+      <h2>러닝 기록처럼 쌓이는 프로젝트</h2>
       <div class="project-grid">
         <article class="project-item">
-          <h3>Portfolio Foundation</h3>
-          <p>GitHub Pages용 반응형 정적 사이트의 기본 구조.</p>
-          <p>레이아웃, 내비게이션, 콘텐츠 배치를 안정적으로 정리한 시작점입니다.</p>
+          <h3>Trail Log</h3>
+          <p>러닝 기록과 짧은 메모를 카드처럼 정리하는 정적 페이지.</p>
+          <p>산길을 달리며 남기는 기록의 흐름을 웹 구조로 옮긴 프로젝트입니다.</p>
         </article>
         <article class="project-item">
-          <h3>Games Area</h3>
-          <p>지렁이 게임이 들어갈 전용 섹션과 UI 진입점.</p>
-          <p>작은 인터랙션을 통해 포트폴리오 안에서 직접 체험할 수 있게 설계했습니다.</p>
+          <h3>Summit Notes</h3>
+          <p>코스, 고도, 체크포인트를 간단히 기록하는 페이지.</p>
+          <p>읽기 쉬운 카드형 레이아웃으로 정보와 분위기를 함께 보여줍니다.</p>
         </article>
         <article class="project-item">
-          <h3>Responsive Layout System</h3>
-          <p>모바일과 데스크톱 모두를 위한 카드형 레이아웃.</p>
-          <p>한 페이지 안에서 읽기 쉬움과 정보 밀도를 함께 맞추는 데 초점을 둡니다.</p>
+          <h3>Pace Archive</h3>
+          <p>반복되는 루틴과 페이스 조절을 정리하는 작은 아카이브.</p>
+          <p>반응형 레이아웃에서 빠르게 확인할 수 있도록 설계했습니다.</p>
         </article>
       </div>
     </section>
 
     <section id="experience" class="section card">
       <p class="section-kicker">Experience</p>
-      <h2>Experience</h2>
+      <h2>지속성과 리듬을 다루는 경험</h2>
       <div class="stack-list">
         <article class="stack-item">
           <h3>Frontend Development</h3>
@@ -98,66 +114,67 @@
           <p>작은 검증 루프로 위험을 줄이고, 통과한 기능은 그대로 보존합니다.</p>
         </article>
         <article class="stack-item">
-          <h3>Static Site Delivery</h3>
-          <p>GitHub Pages처럼 단순하고 검증 가능한 배포 환경에 맞춰 작업합니다.</p>
+          <h3>Trail Mindset</h3>
+          <p>회복, 페이스 조절, 반복 개선처럼 오래 가는 작업 방식을 선호합니다.</p>
         </article>
       </div>
     </section>
 
     <section id="research" class="section card">
       <p class="section-kicker">Research</p>
-      <h2>Research</h2>
+      <h2>기록과 실험이 만나는 곳</h2>
       <p>
-        이 영역은 추가 요구사항과 게임 확장 규칙이 확인되면 업데이트합니다.
+        이 영역은 트레일 러닝 기록, UI 실험, 색감 테스트, 카드 레이아웃 비교처럼
+        검증이 필요한 내용을 차근차근 쌓아 가는 공간입니다.
       </p>
       <p>
-        현재는 정적 배포와 UI 안정성에 대한 검증을 우선합니다.
+        현재는 정적 배포와 모바일 가독성, 그리고 가벼운 인터랙션 검증을 우선합니다.
       </p>
       <p>
-        실험적인 내용은 검증 후 차례대로 반영합니다.
+        새로운 코스나 기록이 확인되면 여기에 차례대로 반영합니다.
       </p>
     </section>
 
     <section id="contact" class="section card">
       <p class="section-kicker">Contact</p>
-      <h2>Contact</h2>
+      <h2>연락과 협업</h2>
       <p>
         연락처와 링크는 확인된 정보만 반영합니다.
       </p>
       <p>
-        추가 연락 방법은 사람 확인 후 업데이트합니다. [사람 확인 필요]
+        협업이나 문의 방식은 필요할 때 업데이트하며, 아직 확정되지 않은 정보는 [사람 확인 필요]로 남겨 둡니다.
       </p>
       <p>
-        프로젝트 문의 방식은 검증된 경로만 표시합니다.
+        트레일 러닝과 웹 작업에 대한 대화는 검증된 경로에서만 이어 갑니다.
       </p>
     </section>
 
     <section id="games" class="section card games-section">
       <p class="section-kicker">Games</p>
-      <h2>Games</h2>
+      <h2>짧은 휴식에 어울리는 미니 게임</h2>
       <p>
-        포트폴리오 안에 작은 지렁이 게임을 넣어, 키보드와 터치로 즐길 수 있게 했습니다.
+        포트폴리오 안에 작은 지렁이 게임을 넣어, 러닝 루틴 사이에 가볍게 즐길 수 있게 했습니다.
       </p>
       <div class="game-shell" role="group" aria-label="Games 영역">
         <div class="game-status">
-          <p class="games-label">Snake game</p>
-          <p class="game-hint">Start를 누르면 게임이 시작되고, 먹이를 먹을수록 점수가 올라갑니다.</p>
+          <p class="games-label">지렁이 게임</p>
+          <p class="game-hint">시작을 누르면 시작되고, 먹이를 먹을수록 점수가 올라갑니다.</p>
           <p class="game-score">Score: <span id="snake-score">0</span></p>
-          <p id="snake-state" class="game-hint" aria-live="polite">Start를 눌러 게임을 시작하세요.</p>
+          <p id="snake-state" class="game-hint" aria-live="polite">시작을 눌러 게임을 시작하세요.</p>
         </div>
         <canvas id="snake-canvas" class="game-canvas" width="640" height="480" aria-label="Snake game board"></canvas>
         <div class="game-controls">
-          <button class="game-control-button" type="button" data-action="start">Start</button>
-          <button class="game-control-button" type="button" data-action="pause">Pause</button>
-          <button class="game-control-button" type="button" data-action="restart">Restart</button>
+          <button class="game-control-button" type="button" data-action="start">시작</button>
+          <button class="game-control-button" type="button" data-action="pause">일시정지</button>
+          <button class="game-control-button" type="button" data-action="restart">다시 시작</button>
         </div>
         <div class="game-touch" aria-label="Mobile direction controls">
-          <button class="direction-button" type="button" data-direction="up">Up</button>
+          <button class="direction-button" type="button" data-direction="up">위</button>
           <div class="direction-row">
-            <button class="direction-button" type="button" data-direction="left">Left</button>
-            <button class="direction-button" type="button" data-direction="right">Right</button>
+            <button class="direction-button" type="button" data-direction="left">왼쪽</button>
+            <button class="direction-button" type="button" data-direction="right">오른쪽</button>
           </div>
-          <button class="direction-button" type="button" data-direction="down">Down</button>
+          <button class="direction-button" type="button" data-direction="down">아래</button>
         </div>
         <p class="game-hint">
           벽이나 자기 몸에 부딪히지 않게 움직이고, 모바일에서는 아래 방향 버튼으로도 조작할 수 있습니다.
@@ -167,7 +184,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>GitHub Pages에서 실행되는 정적 포트폴리오입니다.</p>
+    <p>트레일 러닝 감성을 담은 정적 포트폴리오입니다.</p>
   </footer>
 </body>
 </html>

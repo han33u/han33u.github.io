@@ -83,10 +83,10 @@ function initSnakeGame() {
   };
 
   const stateMessages = {
-    idle: 'Press Start to play.',
-    running: 'Running. Use arrows, WASD, or touch controls.',
-    paused: 'Paused.',
-    gameover: 'Game over. Press Restart.',
+    idle: '시작을 눌러 게임을 시작하세요.',
+    running: '실행 중입니다. 방향키, WASD, 또는 터치 조작을 사용하세요.',
+    paused: '일시정지되었습니다.',
+    gameover: '게임이 끝났습니다. 다시 시작을 눌러 주세요.',
   };
 
   const directions = {
@@ -126,7 +126,7 @@ function initSnakeGame() {
     stateEl.textContent = stateMessages[state] || stateMessages.idle;
     startBtn.classList.toggle('is-active', state === 'running');
     pauseBtn.classList.toggle('is-active', state === 'paused');
-    pauseBtn.textContent = state === 'paused' ? 'Resume' : 'Pause';
+    pauseBtn.textContent = state === 'paused' ? '이어하기' : '일시정지';
   }
 
   function startLoop() {
@@ -317,9 +317,9 @@ function initSnakeGame() {
     ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
     ctx.font = '700 34px Segoe UI, Arial, sans-serif';
-    ctx.fillText('Game Over', grid.width / 2, grid.height / 2 - 10);
+    ctx.fillText('게임 종료', grid.width / 2, grid.height / 2 - 10);
     ctx.font = '500 18px Segoe UI, Arial, sans-serif';
-    ctx.fillText('Press Restart to try again.', grid.width / 2, grid.height / 2 + 24);
+    ctx.fillText('다시 시작을 눌러 다시 도전하세요.', grid.width / 2, grid.height / 2 + 24);
   }
 
   function render() {
