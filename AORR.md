@@ -400,6 +400,7 @@ GitHub Pages 호환성:
 - 최신 Step 8 변경 요청은 현재 `CHANGE_REQUEST.md`/`MEMORY.md`/배포 상태와 일치하는 워크플로 검증 요청으로 확인되었고, 별도 Change Item 추가 없이 기록만 갱신했다.
 - 최근 포트폴리오 디자인 요청은 CSS 중심의 시각적 개선으로 처리했고, 구조와 게임 로직은 그대로 보존했다.
 - Swiss UTMB 배경 요청은 생성 이미지 자산을 추가하고 히어로 배경과 색감을 알프스 톤으로 바꾸는 디자인 Change Item으로 처리했다.
+- 최근 전체 페이지 재디자인 요청은 같은 Swiss UTMB 컨셉을 본문, 카드, 내비게이션, 게임, 푸터까지 확장하는 CSS 중심 Change Item으로 처리했다.
 
 ## Self-Correcting TDD Loop
 
