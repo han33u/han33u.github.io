@@ -40,14 +40,14 @@
 
 ## Current State
 
-- Current state: trail running redesign was refreshed with a richer earth-and-forest palette and verified on the live public site; change-request workflow remains fully applied
-- Completed loops: `AORR.md`, `Self-Correcting TDD Loop`, `MEMORY.md`, first site scaffold, Claude Sonnet verification, content scaffold expansion, Games scaffold expansion, snake game implementation, GitHub Pages deployment, snake pacing adjustment, content prompt separation, detailed prompt expansion, site copy application, trail running redesign, change-request workflow setup, change-request workflow applied, design refresh with richer colors and depth
+- Current state: trail running portfolio now uses a Swiss UTMB-inspired alpine hero image and cooler mountain palette, verified on the live public site; change-request workflow remains fully applied
+- Completed loops: `AORR.md`, `Self-Correcting TDD Loop`, `MEMORY.md`, first site scaffold, Claude Sonnet verification, content scaffold expansion, Games scaffold expansion, snake game implementation, GitHub Pages deployment, snake pacing adjustment, content prompt separation, detailed prompt expansion, site copy application, trail running redesign, change-request workflow setup, change-request workflow applied, design refresh with richer colors and depth, Swiss UTMB background image and alpine design refresh
 - Next loop: game polish, accessibility checks, or any confirmed content updates
 - Current Retry count: 0
 - Current error fingerprint: none
 - Blocker: none
 - Last normal state: GitHub Pages deployment with snake game verified
-- Current stable deployment commit: `7847a88fe3cf1f3b4a5cf4147ca4bc6367386f5d`
+- Current stable deployment commit: `5ee52b7d2e103c474b998a400e4d3e753e6e1c8a`
 - Rollback reference: redeploy the previous stable root files from the GitHub Contents history if a future change breaks the site; do not hard reset or force push
 - Current change-request doc: `CHANGE_REQUEST.md`
 - Current workflow focus: split incoming requests into `Change Item` units before editing
@@ -204,7 +204,7 @@
 - The verified model for the Games scaffold expansion check was also `claude-sonnet-5`.
 - GitHub Pages deployment is live at `https://han33u.github.io/`.
 - The verified model for the snake game deployment check was `claude-sonnet-5`.
-- The current stable deployment commit is `7847a88fe3cf1f3b4a5cf4147ca4bc6367386f5d`.
+- The current stable deployment commit is `5ee52b7d2e103c474b998a400e4d3e753e6e1c8a`.
 
 ### Loop 4
 
@@ -272,4 +272,21 @@
 - Retry count: 0
 - End state: portfolio design refresh is live and visually verified
 - Next task: game polish or any confirmed content updates
+- Human check needed: none
+
+### Loop 8
+
+- Start time: 2026-07-14
+- Goal: Apply a Swiss UTMB-inspired alpine hero background image and align the portfolio colors with the mountain race mood
+- Start state: the trail-running portfolio was already live with a warm earthy design
+- Hypothesis: A new hero background image plus cooler alpine accents can shift the site toward a Swiss UTMB visual mood without changing content or game behavior
+- Act: Generated a Swiss alpine trail hero image, added it as `assets/swiss-utmb-hero.png`, updated `styles.css` to use the image as the hero backdrop and cool the palette, then deployed and verified the live public site on desktop and mobile
+- Changed files: `styles.css`, `assets/swiss-utmb-hero.png`
+- Verifier: GitHub Pages status API, public URL HTTP check, browser desktop screenshot, browser mobile screenshot
+- Test result: PASS
+- exit code: 0
+- Error fingerprint: none
+- Retry count: 0
+- End state: Swiss UTMB-inspired hero design is live and verified
+- Next task: any confirmed content or game updates
 - Human check needed: none
