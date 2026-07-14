@@ -1,6 +1,7 @@
 (() => {
   initNavigation();
   initSnakeGame();
+  initMountainGame();
 })();
 
 function initNavigation() {
@@ -22,7 +23,7 @@ function initNavigation() {
   });
 
   siteNav.addEventListener('click', (event) => {
-    if (event.target instanceof HTMLAnchorElement && window.innerWidth <= 720) {
+    if (event.target instanceof HTMLAnchorElement && window.innerWidth <= 760) {
       setExpanded(false);
     }
   });
@@ -83,10 +84,10 @@ function initSnakeGame() {
   };
 
   const stateMessages = {
-    idle: '시작을 눌러 게임을 시작하세요.',
-    running: '실행 중입니다. 방향키, WASD, 또는 터치 조작을 사용하세요.',
-    paused: '일시정지되었습니다.',
-    gameover: '게임이 끝났습니다. 다시 시작을 눌러 주세요.',
+    idle: '시작 버튼을 누르거나 방향키를 눌러 게임을 시작하세요.',
+    running: '실행 중입니다. 방향은 WASD 또는 화살표 키를 사용하세요.',
+    paused: '일시정지했습니다.',
+    gameover: '게임 오버입니다. 다시 시작을 눌러 주세요.',
   };
 
   const directions = {
@@ -104,6 +105,10 @@ function initSnakeGame() {
   let food = { x: 0, y: 0 };
   let timerId = null;
   let touchStart = null;
+
+  function focusCanvas() {
+    canvas.focus({ preventScroll: true });
+  }
 
   function resetGame() {
     score = 0;
@@ -147,6 +152,7 @@ function initSnakeGame() {
     state = 'running';
     updateHud();
     startLoop();
+    focusCanvas();
   }
 
   function startGame() {
@@ -319,7 +325,7 @@ function initSnakeGame() {
     ctx.font = '700 34px Segoe UI, Arial, sans-serif';
     ctx.fillText('게임 종료', grid.width / 2, grid.height / 2 - 10);
     ctx.font = '500 18px Segoe UI, Arial, sans-serif';
-    ctx.fillText('다시 시작을 눌러 다시 도전하세요.', grid.width / 2, grid.height / 2 + 24);
+    ctx.fillText('다시 시작을 눌러 다시 도전해보세요.', grid.width / 2, grid.height / 2 + 24);
   }
 
   function render() {
@@ -340,29 +346,6 @@ function initSnakeGame() {
     context.closePath();
   }
 
-  function directionFromKey(key) {
-    switch (key) {
-      case 'ArrowUp':
-      case 'w':
-      case 'W':
-        return directions.up;
-      case 'ArrowDown':
-      case 's':
-      case 'S':
-        return directions.down;
-      case 'ArrowLeft':
-      case 'a':
-      case 'A':
-        return directions.left;
-      case 'ArrowRight':
-      case 'd':
-      case 'D':
-        return directions.right;
-      default:
-        return null;
-    }
-  }
-
   function onKeyDown(event) {
     const nextDirection = directionFromKey(event.key);
     if (!nextDirection) {
@@ -378,6 +361,7 @@ function initSnakeGame() {
       return;
     }
 
+    focusCanvas();
     touchStart = { x: event.clientX, y: event.clientY };
   }
 
@@ -426,10 +410,647 @@ function initSnakeGame() {
     });
   });
 
-  window.addEventListener('keydown', onKeyDown);
+  canvas.addEventListener('keydown', onKeyDown);
   canvas.addEventListener('pointerdown', onPointerDown);
   canvas.addEventListener('pointerup', onPointerUp);
   canvas.addEventListener('pointercancel', onPointerCancel);
+  canvas.addEventListener('pointerleave', onPointerCancel);
 
   resetGame();
+}
+
+function initMountainGame() {
+  const canvas = document.querySelector('#mountain-canvas');
+  const scoreEl = document.querySelector('#mountain-score');
+  const flagsEl = document.querySelector('#mountain-flags');
+  const staminaEl = document.querySelector('#mountain-stamina');
+  const stateEl = document.querySelector('#mountain-state');
+  const startBtn = document.querySelector('[data-mountain-action="start"]');
+  const pauseBtn = document.querySelector('[data-mountain-action="pause"]');
+  const restartBtn = document.querySelector('[data-mountain-action="restart"]');
+  const directionButtons = document.querySelectorAll('[data-mountain-direction]');
+
+  if (
+    !(canvas instanceof HTMLCanvasElement) ||
+    !(scoreEl instanceof HTMLElement) ||
+    !(flagsEl instanceof HTMLElement) ||
+    !(staminaEl instanceof HTMLElement) ||
+    !(stateEl instanceof HTMLElement) ||
+    !(startBtn instanceof HTMLButtonElement) ||
+    !(pauseBtn instanceof HTMLButtonElement) ||
+    !(restartBtn instanceof HTMLButtonElement)
+  ) {
+    return;
+  }
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    return;
+  }
+
+  const grid = {
+    cols: 20,
+    rows: 15,
+    cell: 32,
+    width: 640,
+    height: 480,
+  };
+
+  canvas.width = grid.width;
+  canvas.height = grid.height;
+  canvas.tabIndex = 0;
+
+  const colors = {
+    skyTop: '#dff1ff',
+    skyBottom: '#f7f0e4',
+    farMountain: '#b0bcc6',
+    nearMountain: '#7b8896',
+    mountainShadow: '#5a6775',
+    trail: '#f1d7a7',
+    trailEdge: '#caa874',
+    pathGlow: 'rgba(255, 255, 255, 0.3)',
+    flag: '#d65c3d',
+    climber: '#243243',
+    climberAccent: '#f4efe6',
+    rock: '#5d6874',
+    warning: 'rgba(31, 36, 48, 0.74)',
+  };
+
+  const stateMessages = {
+    idle: '시작 버튼을 누르거나 방향키를 눌러 산행을 시작하세요.',
+    running: '산길을 오르는 중입니다. 정상까지 계속 올라가 보세요.',
+    paused: '산행을 잠시 멈췄습니다.',
+    win: '정상에 도달했습니다. 멋진 산행이었어요!',
+    gameover: '체력이 다했습니다. 다시 시작해 한 번 더 도전해보세요.',
+  };
+
+  const directions = {
+    up: { x: 0, y: -1 },
+    down: { x: 0, y: 1 },
+    left: { x: -1, y: 0 },
+    right: { x: 1, y: 0 },
+  };
+
+  const summit = { x: 10, y: 0 };
+  const pathPoints = [
+    { x: 9, y: 14 },
+    { x: 8, y: 12 },
+    { x: 11, y: 10 },
+    { x: 7, y: 8 },
+    { x: 10, y: 6 },
+    { x: 8, y: 4 },
+    { x: 11, y: 2 },
+    { x: 10, y: 0 },
+  ];
+  const trailSet = buildTrailSet(pathPoints, grid.cols, grid.rows, 1);
+  const flags = [
+    { x: 8, y: 12, collected: false },
+    { x: 10, y: 7, collected: false },
+    { x: 9, y: 2, collected: false },
+  ];
+  const hazards = [
+    { x: 6, y: 9 },
+    { x: 12, y: 5 },
+    { x: 9, y: 3 },
+  ];
+
+  let state = 'idle';
+  let score = 0;
+  let stamina = 12;
+  let climber = { x: 9, y: 14 };
+  let timerId = null;
+  let touchStart = null;
+  let statusMessage = stateMessages.idle;
+
+  function focusCanvas() {
+    canvas.focus({ preventScroll: true });
+  }
+
+  function collectedFlagsCount() {
+    return flags.filter((flag) => flag.collected).length;
+  }
+
+  function setState(nextState, message) {
+    state = nextState;
+    statusMessage = message || stateMessages[nextState] || stateMessages.idle;
+    updateHud();
+  }
+
+  function resetGame() {
+    state = 'idle';
+    score = 0;
+    stamina = 12;
+    climber = { x: 9, y: 14 };
+    flags.forEach((flag) => {
+      flag.collected = false;
+    });
+    statusMessage = stateMessages.idle;
+    updateHud();
+    render();
+    stopLoop();
+  }
+
+  function updateHud() {
+    scoreEl.textContent = String(score);
+    flagsEl.textContent = String(collectedFlagsCount());
+    staminaEl.textContent = String(stamina);
+    stateEl.textContent = statusMessage;
+    startBtn.classList.toggle('is-active', state === 'running');
+    pauseBtn.classList.toggle('is-active', state === 'paused');
+    pauseBtn.textContent = state === 'paused' ? '이어하기' : '일시정지';
+  }
+
+  function startLoop() {
+    if (timerId !== null) {
+      return;
+    }
+    timerId = window.setInterval(tick, 1200);
+  }
+
+  function stopLoop() {
+    if (timerId !== null) {
+      window.clearInterval(timerId);
+      timerId = null;
+    }
+  }
+
+  function beginRunning() {
+    setState('running');
+    startLoop();
+    focusCanvas();
+  }
+
+  function startGame() {
+    if (state === 'gameover' || state === 'win') {
+      resetGame();
+    }
+
+    if (state === 'idle' || state === 'paused') {
+      beginRunning();
+    }
+  }
+
+  function pauseGame() {
+    if (state === 'running') {
+      setState('paused');
+      stopLoop();
+      return;
+    }
+
+    if (state === 'paused') {
+      beginRunning();
+    }
+  }
+
+  function restartGame() {
+    resetGame();
+    beginRunning();
+  }
+
+  function tick() {
+    if (state !== 'running') {
+      return;
+    }
+
+    stamina = Math.max(0, stamina - 1);
+    if (stamina === 0) {
+      setState('gameover');
+      stopLoop();
+      render();
+      return;
+    }
+
+    statusMessage = stateMessages.running;
+    updateHud();
+    render();
+  }
+
+  function moveClimber(delta) {
+    if (!delta || state === 'gameover' || state === 'win') {
+      return;
+    }
+
+    if (state === 'idle' || state === 'paused') {
+      beginRunning();
+    }
+
+    const next = {
+      x: clamp(climber.x + delta.x, 0, grid.cols - 1),
+      y: clamp(climber.y + delta.y, 0, grid.rows - 1),
+    };
+
+    if (!isTrailCell(next.x, next.y)) {
+      stamina = Math.max(0, stamina - 1);
+      if (stamina === 0) {
+        setState('gameover');
+        stopLoop();
+        render();
+        return;
+      }
+
+      statusMessage = '험한 바위에 막혀 체력이 조금 줄었습니다.';
+      updateHud();
+      render();
+      return;
+    }
+
+    const previousY = climber.y;
+    climber = next;
+
+    if (next.y < previousY) {
+      score += 1;
+    }
+
+    const encounteredFlag = flags.find((flag) => !flag.collected && flag.x === next.x && flag.y === next.y);
+    if (encounteredFlag) {
+      encounteredFlag.collected = true;
+      score += 5;
+      statusMessage = '보급 깃발을 발견했습니다.';
+    } else {
+      statusMessage = stateMessages.running;
+    }
+
+    if (hazards.some((hazard) => hazard.x === next.x && hazard.y === next.y)) {
+      stamina = Math.max(0, stamina - 1);
+      score = Math.max(0, score - 1);
+      statusMessage = '미끄러운 구간입니다. 속도를 조절하세요.';
+    }
+
+    if (next.x === summit.x && next.y === summit.y) {
+      score += 10;
+      setState('win', '정상에 도달했습니다. 멋진 산행이었어요!');
+      stopLoop();
+      render();
+      return;
+    }
+
+    if (stamina === 0) {
+      setState('gameover');
+      stopLoop();
+      render();
+      return;
+    }
+
+    updateHud();
+    render();
+  }
+
+  function isTrailCell(x, y) {
+    return trailSet.has(`${x},${y}`);
+  }
+
+  function onKeyDown(event) {
+    const nextDirection = directionFromKey(event.key);
+    if (!nextDirection) {
+      return;
+    }
+
+    event.preventDefault();
+    moveClimber(nextDirection);
+  }
+
+  function onPointerDown(event) {
+    if (event.pointerType === 'mouse' && event.button !== 0) {
+      return;
+    }
+
+    focusCanvas();
+    touchStart = { x: event.clientX, y: event.clientY };
+  }
+
+  function onPointerUp(event) {
+    if (!touchStart) {
+      return;
+    }
+
+    const dx = event.clientX - touchStart.x;
+    const dy = event.clientY - touchStart.y;
+    touchStart = null;
+
+    const threshold = 24;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < threshold) {
+      return;
+    }
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      moveClimber(dx > 0 ? directions.right : directions.left);
+      return;
+    }
+
+    moveClimber(dy > 0 ? directions.down : directions.up);
+  }
+
+  function onPointerCancel() {
+    touchStart = null;
+  }
+
+  function drawBackdrop() {
+    const skyGradient = ctx.createLinearGradient(0, 0, 0, grid.height);
+    skyGradient.addColorStop(0, colors.skyTop);
+    skyGradient.addColorStop(0.7, '#f7f4eb');
+    skyGradient.addColorStop(1, colors.skyBottom);
+    ctx.fillStyle = skyGradient;
+    ctx.fillRect(0, 0, grid.width, grid.height);
+
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
+    ctx.beginPath();
+    ctx.arc(88, 74, 34, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(116, 74, 24, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function drawMountain(points, fillStyle, shadowStyle) {
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, grid.height);
+    points.forEach((point) => {
+      ctx.lineTo(point.x, point.y);
+    });
+    ctx.lineTo(points[points.length - 1].x, grid.height);
+    ctx.closePath();
+    ctx.fillStyle = fillStyle;
+    ctx.fill();
+
+    if (shadowStyle) {
+      ctx.strokeStyle = shadowStyle;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  }
+
+  function drawTerrain() {
+    drawBackdrop();
+
+    drawMountain(
+      [
+        { x: -20, y: 326 },
+        { x: 80, y: 188 },
+        { x: 172, y: 246 },
+        { x: 286, y: 112 },
+        { x: 374, y: 196 },
+        { x: 466, y: 90 },
+        { x: 560, y: 160 },
+        { x: 680, y: 74 },
+      ],
+      colors.farMountain,
+      'rgba(255, 255, 255, 0.18)'
+    );
+
+    drawMountain(
+      [
+        { x: -30, y: 388 },
+        { x: 94, y: 282 },
+        { x: 172, y: 334 },
+        { x: 260, y: 216 },
+        { x: 350, y: 304 },
+        { x: 446, y: 184 },
+        { x: 556, y: 272 },
+        { x: 680, y: 204 },
+      ],
+      colors.nearMountain,
+      'rgba(31, 36, 48, 0.12)'
+    );
+
+    ctx.fillStyle = '#f7f1e4';
+    ctx.fillRect(0, 384, grid.width, 96);
+
+    ctx.fillStyle = colors.pathGlow;
+    trailSet.forEach((key) => {
+      const [x, y] = key.split(',').map(Number);
+      ctx.fillRect(x * grid.cell, y * grid.cell, grid.cell, grid.cell);
+    });
+
+    ctx.strokeStyle = colors.trailEdge;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    pathPoints.forEach((point, index) => {
+      const px = point.x * grid.cell + grid.cell / 2;
+      const py = point.y * grid.cell + grid.cell / 2;
+      if (index === 0) {
+        ctx.moveTo(px, py);
+      } else {
+        ctx.lineTo(px, py);
+      }
+    });
+    ctx.stroke();
+
+    ctx.strokeStyle = colors.trail;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  function drawFlags() {
+    flags.forEach((flag) => {
+      if (flag.collected) {
+        return;
+      }
+
+      const baseX = flag.x * grid.cell + grid.cell / 2;
+      const baseY = flag.y * grid.cell + grid.cell / 2;
+
+      ctx.fillStyle = '#f1e5cf';
+      ctx.fillRect(baseX - 1, baseY - 14, 2, 28);
+
+      ctx.fillStyle = colors.flag;
+      ctx.beginPath();
+      ctx.moveTo(baseX + 1, baseY - 12);
+      ctx.lineTo(baseX + 18, baseY - 7);
+      ctx.lineTo(baseX + 1, baseY + 1);
+      ctx.closePath();
+      ctx.fill();
+    });
+  }
+
+  function drawHazards() {
+    hazards.forEach((hazard) => {
+      const cx = hazard.x * grid.cell + grid.cell / 2;
+      const cy = hazard.y * grid.cell + grid.cell / 2;
+      ctx.fillStyle = colors.rock;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - 10);
+      ctx.lineTo(cx + 12, cy - 1);
+      ctx.lineTo(cx + 5, cy + 11);
+      ctx.lineTo(cx - 11, cy + 6);
+      ctx.closePath();
+      ctx.fill();
+    });
+  }
+
+  function drawClimber() {
+    const cx = climber.x * grid.cell + grid.cell / 2;
+    const cy = climber.y * grid.cell + grid.cell / 2;
+
+    ctx.fillStyle = colors.climberAccent;
+    ctx.beginPath();
+    ctx.arc(cx, cy - 6, 6, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = colors.climber;
+    roundRect(ctx, cx - 6, cy - 2, 12, 18, 6);
+    ctx.fill();
+
+    ctx.strokeStyle = colors.climber;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(cx - 2, cy + 12);
+    ctx.lineTo(cx - 8, cy + 24);
+    ctx.moveTo(cx + 2, cy + 12);
+    ctx.lineTo(cx + 8, cy + 24);
+    ctx.moveTo(cx - 6, cy + 4);
+    ctx.lineTo(cx - 13, cy + 10);
+    ctx.moveTo(cx + 6, cy + 4);
+    ctx.lineTo(cx + 14, cy + 10);
+    ctx.stroke();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(cx + 2, cy - 3, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function drawSummit() {
+    const px = summit.x * grid.cell + grid.cell / 2;
+    const py = summit.y * grid.cell + grid.cell / 2;
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(px, py + 4, 12, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = colors.flag;
+    ctx.beginPath();
+    ctx.moveTo(px + 2, py - 10);
+    ctx.lineTo(px + 20, py - 5);
+    ctx.lineTo(px + 2, py + 4);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function drawOverlay() {
+    if (state !== 'win' && state !== 'gameover') {
+      return;
+    }
+
+    ctx.fillStyle = colors.warning;
+    ctx.fillRect(0, 0, grid.width, grid.height);
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.font = '700 34px Segoe UI, Arial, sans-serif';
+    ctx.fillText(state === 'win' ? '정상 도달' : '산행 종료', grid.width / 2, grid.height / 2 - 12);
+    ctx.font = '500 18px Segoe UI, Arial, sans-serif';
+    ctx.fillText(
+      state === 'win' ? '성공적으로 산을 올랐습니다.' : '다시 시작을 눌러 다시 도전해보세요.',
+      grid.width / 2,
+      grid.height / 2 + 22
+    );
+  }
+
+  function render() {
+    drawTerrain();
+    drawFlags();
+    drawHazards();
+    drawSummit();
+    drawClimber();
+    drawOverlay();
+  }
+
+  function roundRect(context, x, y, width, height, radius) {
+    const r = Math.min(radius, width / 2, height / 2);
+    context.beginPath();
+    context.moveTo(x + r, y);
+    context.arcTo(x + width, y, x + width, y + height, r);
+    context.arcTo(x + width, y + height, x, y + height, r);
+    context.arcTo(x, y + height, x, y, r);
+    context.arcTo(x, y, x + width, y, r);
+    context.closePath();
+  }
+
+  function buildTrailSet(points, cols, rows, thickness) {
+    const set = new Set();
+
+    for (let index = 0; index < points.length - 1; index += 1) {
+      const start = points[index];
+      const end = points[index + 1];
+      const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y));
+
+      for (let step = 0; step <= steps; step += 1) {
+        const x = Math.round(start.x + ((end.x - start.x) * step) / steps);
+        const y = Math.round(start.y + ((end.y - start.y) * step) / steps);
+
+        for (let offsetX = -thickness; offsetX <= thickness; offsetX += 1) {
+          for (let offsetY = -thickness; offsetY <= thickness; offsetY += 1) {
+            if (Math.abs(offsetX) + Math.abs(offsetY) > thickness) {
+              continue;
+            }
+
+            const cellX = x + offsetX;
+            const cellY = y + offsetY;
+            if (cellX >= 0 && cellX < cols && cellY >= 0 && cellY < rows) {
+              set.add(`${cellX},${cellY}`);
+            }
+          }
+        }
+      }
+    }
+
+    return set;
+  }
+
+  function onDirectionButton(directionName) {
+    if (!directionName || !(directionName in directions)) {
+      return;
+    }
+
+    moveClimber(directions[directionName]);
+  }
+
+  startBtn.addEventListener('click', startGame);
+  pauseBtn.addEventListener('click', pauseGame);
+  restartBtn.addEventListener('click', restartGame);
+
+  directionButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    button.addEventListener('click', () => {
+      onDirectionButton(button.dataset.mountainDirection);
+    });
+  });
+
+  canvas.addEventListener('keydown', onKeyDown);
+  canvas.addEventListener('pointerdown', onPointerDown);
+  canvas.addEventListener('pointerup', onPointerUp);
+  canvas.addEventListener('pointercancel', onPointerCancel);
+  canvas.addEventListener('pointerleave', onPointerCancel);
+
+  resetGame();
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function directionFromKey(key) {
+  switch (key) {
+    case 'ArrowUp':
+    case 'w':
+    case 'W':
+      return { x: 0, y: -1 };
+    case 'ArrowDown':
+    case 's':
+    case 'S':
+      return { x: 0, y: 1 };
+    case 'ArrowLeft':
+    case 'a':
+    case 'A':
+      return { x: -1, y: 0 };
+    case 'ArrowRight':
+    case 'd':
+    case 'D':
+      return { x: 1, y: 0 };
+    default:
+      return null;
+  }
 }
